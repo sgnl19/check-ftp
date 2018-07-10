@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	globalUsage = `This program attributes Jolokia`
+	globalUsage = `This program makes ftp checks`
 	version     string
 )
 
@@ -20,8 +20,8 @@ func main() {
 
 func newRootCmd(args []string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:          "check-jolokia",
-		Short:        "check-jolokia checks if an Jolokia query meets the thresholds",
+		Use:          "check-ftp",
+		Short:        "check-ftp checks ftp",
 		Long:         globalUsage,
 		Version:      version,
 		SilenceUsage: true,
@@ -33,7 +33,7 @@ func newRootCmd(args []string) *cobra.Command {
 
 	cmd.AddCommand(
 		// check commands
-		newCheckQueueAttributeCmd(out),
+		newCheckUserRestriction(out),
 	)
 
 	return cmd
@@ -43,7 +43,7 @@ func newRootCmd(args []string) *cobra.Command {
 func NameArgs() cobra.PositionalArgs {
 	return func(cmd *cobra.Command, args []string) error {
 		if len(args) != 1 {
-			return errors.New("query is required")
+			return errors.New("ftp host is required")
 		}
 		return nil
 	}

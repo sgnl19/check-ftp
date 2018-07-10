@@ -31,6 +31,10 @@
 
 [[constraint]]
   branch = "master"
+  name = "github.com/jlaffaye/ftp"
+
+[[constraint]]
+  branch = "master"
   name = "github.com/s8sg/go_jolokia"
 
 [[constraint]]

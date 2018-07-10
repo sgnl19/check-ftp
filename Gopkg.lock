@@ -15,6 +15,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/jlaffaye/ftp"
+  packages = ["."]
+  revision = "2403248fa8cc9f7909862627aa7337f13f8e0bf1"
+
+[[projects]]
+  branch = "master"
   name = "github.com/s8sg/go_jolokia"
   packages = ["."]
   revision = "6f1027c658bb51d81ba3dd92cd3c23531b5603b2"
@@ -34,6 +40,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "39a5df69eaba39b876b30dfedfe9c3cc30a4283b90b9043543404297e3c777fd"
+  inputs-digest = "f30da8caf19dba3e896669c8137e34e025ca5c2a34b17249644c0bbc2fb11257"
   solver-name = "gps-cdcl"
   solver-version = 1

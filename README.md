@@ -1,5 +1,5 @@
-# check-jolokia
-Icinga Checks based on Jolokia results
+# check-ftp
+Icinga Checks based on ftp commands
 
 ## Default Flags
 
@@ -7,42 +7,30 @@ Icinga Checks based on Jolokia results
 
 | Flag | Short | Description |
 | --- | --- | --- |
-| COMMAND |  | The command to execute followed by the Jolokia URL incl authentication credentials |
-| --help | -h | Help for check-jolokia |
+| COMMAND |  | The command to execute |
+| --help | -h | Help for check-ftp |
 | --verbose | -v | Enable verbose output |
 
 ## Commands
 
-### queueAttribute
+### user-restriction
 
-Query any Attribute of a given queue.
+Check restrictions for a given user.
 
-- Search for `AddressMemoryUsage` in queue broker="0.0.0.0" with thresholds
+- User is able to log in`
+- User is located in his home directory
+- User cannot navigate outside his home directory
+
+If any restriction is violated a critical is thrown
+
 ```
-check-jolokia queueAttribute http://<username>:<password>@<url>:<port>/console/jolokia/read
--q 'broker="0.0.0.0"' -a AddressMemoryUsage -c 3000000 -w 2500000
+check-ftp user-restriction [ftp-host]:[port] -u [user] -p [password]
 ```
 
 ### Flags
 
 | Flag | Short | Description |
 |--- |--- |--- |
-| --attribute | -a | the attributes to query from the queue (default "*") |
-| --critical | -c | critical threshold for minimum amount of result (default "10:") |
-| --domain | -d | the domain of the queue to query (default "org.apache.activemq.artemis") |
-| --help | -h | Help for queueAttribute |
-| --queue | -q | The queue to query (default "*") |
-| --warning | -w | Warning threshold for minimum amount of result (default "5:") |
-
-
-## Thresholds
-
-<https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT>
-
-| Range definition |	Generate an alert if x... |
-|--- |--- |
-| 10 | < 0 or > 10, (outside the range of {0 .. 10}) |
-| 10: | < 10, (outside {10 .. ∞}) |
-| ~:10 | > 10, (outside the range of {-∞ .. 10}) |
-| 10:20 | < 10 or > 20, (outside the range of {10 .. 20}) |
-| @10:20 | ≥ 10 and ≤ 20, (inside the range of {10 .. 20} |
+| --user | -u | the ftp user |
+| --password | -p | the password |
+| --help | -h | Help for user-restriction |
