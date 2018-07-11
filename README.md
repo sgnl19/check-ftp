@@ -35,4 +35,5 @@ check-ftp user-restriction -H [ftp-host] -P [port] -u [user] -p [password]
 | --port | -P | The ftp port, defaults to 21 |
 | --user | -u | The ftp user |
 | --password | -p | The password |
+| --file-exists | -f | An optional file which will be checked for existence |
 | --help | -h | Help for user-restriction |

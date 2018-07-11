@@ -17,6 +17,7 @@ type (
 		Port          int
 		User          string
 		Password      string
+		File          string
 		Verbose       int
 	}
 )
@@ -34,10 +35,11 @@ func newCheckUserRestriction(out io.Writer) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&c.Host, "host", "H", "*", "the ftp host")
+	cmd.Flags().StringVarP(&c.Host, "host", "H", "", "the ftp host")
 	cmd.Flags().IntVarP(&c.Port, "port", "P", 21, "the ftp port")
-	cmd.Flags().StringVarP(&c.User, "user", "u", "*", "the ftp user")
-	cmd.Flags().StringVarP(&c.Password, "password", "p", "*", "the ftp password")
+	cmd.Flags().StringVarP(&c.User, "user", "u", "", "the ftp user")
+	cmd.Flags().StringVarP(&c.Password, "password", "p", "", "the ftp password")
+	cmd.Flags().StringVarP(&c.File, "file-exists", "f", "", "a file that will be checked for existence")
 	cmd.Flags().CountVarP(&c.Verbose, "verbose", "v", "enable verbose output")
 
 	return cmd
@@ -56,6 +58,7 @@ func (c *checkUserRestriction) run() {
 		Port:     c.Port,
 		User:     c.User,
 		Password: c.Password,
+		File:     c.File,
 		Verbose:  c.Verbose,
 	})
 	results.Exit()
