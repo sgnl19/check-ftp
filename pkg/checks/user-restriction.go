@@ -16,18 +16,18 @@ type (
 
 	userRestrictionImpl struct {
 		ServerConn ftp.ServerConn
-		Host       string
 	}
 )
 
 // NewUserRestriction creates a new instance of UserRestrictionCheck
-func NewUserRestriction(serverConn ftp.ServerConn, host string) UserRestrictionCheck {
-	return &userRestrictionImpl{ServerConn: serverConn, Host: host}
+func NewUserRestriction(serverConn ftp.ServerConn) UserRestrictionCheck {
+	return &userRestrictionImpl{ServerConn: serverConn}
 }
 
 // CheckAvailableAddressesOptions contains options needed to run CheckAvailableAddresses check
 type UserRestrictionOptions struct {
 	Host              string
+	Port              int
 	User              string
 	Password          string
 	Verbose           int

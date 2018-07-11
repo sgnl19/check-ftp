@@ -42,8 +42,8 @@ func newRootCmd(args []string) *cobra.Command {
 // NameArgs returns an error if there are not exactly 1 arg containing the resource name.
 func NameArgs() cobra.PositionalArgs {
 	return func(cmd *cobra.Command, args []string) error {
-		if len(args) != 1 {
-			return errors.New("ftp host is required")
+		if len(args) != 0 {
+			return errors.New("only one check command is allowed")
 		}
 		return nil
 	}

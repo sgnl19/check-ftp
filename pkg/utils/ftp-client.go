@@ -3,18 +3,24 @@ package utils
 import (
 	"fmt"
 	"github.com/jlaffaye/ftp"
+	"strconv"
 )
 
 // NewServerConn creates a new instance of ServerConn
-func NewServerConn(host string) (*ftp.ServerConn, error) {
+func NewServerConn(host string, port int) (*ftp.ServerConn, error) {
 
 	if len(host) == 0 {
-		return nil, fmt.Errorf("ftp host missing: %s", host)
+		return nil, fmt.Errorf("ftp host is missing: %s", host)
 	}
-	conn, err := ftp.Connect(host)
+	if port <= 0 {
+		return nil, fmt.Errorf("ftp port is invalid: %v", port)
+	}
+
+	address := host + ":" + strconv.Itoa(port)
+	conn, err := ftp.Connect(address)
 
 	if err != nil {
-		return nil, fmt.Errorf("could not connect to host [%v]: %s", host, err)
+		return nil, fmt.Errorf("could not connect to host [%v]: %s", address, err)
 	}
 
 	return conn, err

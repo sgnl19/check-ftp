@@ -24,13 +24,15 @@ Check restrictions for a given user.
 If any restriction is violated a critical is thrown
 
 ```
-check-ftp user-restriction [ftp-host]:[port] -u [user] -p [password]
+check-ftp user-restriction -H [ftp-host] -P [port] -u [user] -p [password]
 ```
 
 ### Flags
 
 | Flag | Short | Description |
 |--- |--- |--- |
-| --user | -u | the ftp user |
-| --password | -p | the password |
+| --host | -H | The ftp host |
+| --port | -P | The ftp port, defaults to 21 |
+| --user | -u | The ftp user |
+| --password | -p | The password |
 | --help | -h | Help for user-restriction |
